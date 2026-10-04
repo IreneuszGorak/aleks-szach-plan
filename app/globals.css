@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-familjen), "Familjen Grotesk", sans-serif;
+  --font-mono: var(--font-fragment), "Fragment Mono", ui-monospace, monospace;
+  --color-ink: #14241c;
+  --color-paper: #e7eee8;
+  --color-foam: #f4f7f4;
+  --color-awning: #12392c;
+  --color-awning-2: #1b4d3b;
+  --color-mist: #d5e3da;
+  --color-ticket: #f4efe2;
+  --color-ticket-ink: #231e16;
+  --color-ticket-soft: #6a5d4c;
+  --color-rule: #c9d2cb;
+  --color-warn: #7a3030;
+}
+
+html {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  color-scheme: light;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-paper);
+  min-height: 100svh;
+}
+
+::selection {
+  background: #12392c;
+  color: #f4f7f4;
+}
+
+:focus-visible {
+  outline: 2px solid #12392c;
+  outline-offset: 3px;
+}
+
+.awning :focus-visible {
+  outline-color: #f4f7f4;
+}
+
+input,
+button,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+.ticket {
+  --hole: var(--color-paper);
+  background-color: var(--color-ticket);
+  background-image: radial-gradient(circle at 12px 0, var(--hole) 7px, transparent 7.5px);
+  background-repeat: repeat-x;
+  background-size: 24px 16px;
+  color: var(--color-ticket-ink);
+  padding: 1.7rem 1.25rem 1.4rem;
+  box-shadow: 0 18px 40px rgb(12 28 20 / 18%);
+}
+
+.awning .ticket {
+  --hole: #12392c;
+}
+
+.ticket-hero {
+  animation: settle 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes settle {
+  from {
+    transform: rotate(6deg) translateY(16px);
+  }
+  to {
+    transform: rotate(-1.6deg) translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticket-hero {
+    animation: none;
+    transform: rotate(-1.6deg);
+  }
+}
+
+.choice {
+  border: 1px solid var(--color-rule);
+  background: transparent;
+  min-height: 3.25rem;
+  padding: 0.65rem 0.9rem;
+  border-radius: 999px;
+}
+
+.choice[aria-pressed="true"] {
+  background: var(--color-awning);
+  color: var(--color-foam);
+  border-color: var(--color-awning);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3.1rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 999px;
+  background: var(--color-awning);
+  color: var(--color-foam);
+  font-weight: 600;
+}
+
+.btn-light {
+  background: var(--color-ticket);
+  color: var(--color-awning);
+}
+
+.btn:disabled {
+  opacity: 0.38;
+}
+
+.budget {
+  width: 7ch;
+  font-size: clamp(3rem, 8vw, 4.5rem);
+  line-height: 1;
+  background: transparent;
+  border: 0;
+  border-bottom: 2px solid var(--color-awning);
+  border-radius: 0;
+  caret-color: var(--color-awning);
+  font-variant-numeric: tabular-nums;
+}
+
+.meal {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.85rem;
+  width: 100%;
+  text-align: left;
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--color-rule);
+  background: transparent;
+}
+
+.meal img,
+.thumb {
+  width: 4.25rem;
+  height: 4.25rem;
+  object-fit: cover;
+}
+
+.drawer {
+  box-shadow: -12px 0 36px rgb(20 36 28 / 12%);
+}
